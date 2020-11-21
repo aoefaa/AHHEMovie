@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
-
+                t.fillInStackTrace();
             }
         });
 
