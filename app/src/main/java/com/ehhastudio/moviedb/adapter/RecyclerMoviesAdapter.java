@@ -2,7 +2,6 @@ package com.ehhastudio.moviedb.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +31,7 @@ public class RecyclerMoviesAdapter extends RecyclerView.Adapter<RecyclerMoviesAd
 
     @NonNull
     @Override
-    public RecyclerMoviesAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerMoviesAdapter.MyViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View view;
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         view = inflater.inflate(R.layout.item_movie, parent, false);
@@ -46,7 +45,7 @@ public class RecyclerMoviesAdapter extends RecyclerView.Adapter<RecyclerMoviesAd
                 result.setOriginalTitle(resultList.get(viewHolder.getAdapterPosition()).getOriginalTitle());
                 result.setOverview(resultList.get(viewHolder.getAdapterPosition()).getOverview());
                 result.setPosterPath(resultList.get(viewHolder.getAdapterPosition()).getPosterPath());
-                i.putExtra(DetailActivity.EXTRA_MOVIE, (Parcelable) result);
+                i.putExtra(DetailActivity.EXTRA_MOVIE, result);
                 parent.getContext().startActivity(i);
             }
         });
@@ -57,6 +56,7 @@ public class RecyclerMoviesAdapter extends RecyclerView.Adapter<RecyclerMoviesAd
     public void onBindViewHolder(@NonNull RecyclerMoviesAdapter.MyViewHolder holder, int position) {
         holder.tvTitle.setText(resultList.get(position).getTitle());
         holder.tvDescription.setText(resultList.get(position).getOverview());
+        holder.tvRelease.setText(resultList.get(position).getReleaseDate());
 
         Glide.with(mContext)
                 .load("https://image.tmdb.org/t/p/w185" + resultList.get(position).getPosterPath())
@@ -71,7 +71,7 @@ public class RecyclerMoviesAdapter extends RecyclerView.Adapter<RecyclerMoviesAd
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPoster;
-        TextView tvTitle,tvDescription;
+        TextView tvTitle,tvDescription,tvRelease;
         RelativeLayout relativeLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +79,7 @@ public class RecyclerMoviesAdapter extends RecyclerView.Adapter<RecyclerMoviesAd
             ivPoster = itemView.findViewById(R.id.imgMovie);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvDescription = itemView.findViewById(R.id.tvDeskripsi);
+            tvRelease = itemView.findViewById(R.id.tvRelease);
             relativeLayout = itemView.findViewById(R.id.layoutMovie);
         }
     }

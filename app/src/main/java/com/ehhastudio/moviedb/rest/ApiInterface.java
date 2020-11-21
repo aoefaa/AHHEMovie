@@ -9,7 +9,7 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("/3/movie/{category}")
+    @GET("movie/{category}")
     Call<Response> getMovie(
             @Path("category") String category,
             @Query("api_key") String api_key,

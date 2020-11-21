@@ -17,7 +17,7 @@ public class Response {
     private Integer totalPages;
     @SerializedName("results")
     @Expose
-    private List<Result> results = null;
+    private List<Result> results ;
 
     public Integer getPage() {
         return page;
@@ -50,5 +50,5 @@ public class Response {
     public void setResults(List<Result> results) {
         this.results = results;
     }
-
 }
+

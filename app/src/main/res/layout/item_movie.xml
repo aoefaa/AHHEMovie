@@ -18,8 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="#000"
+        android:fontFamily="@font/roboto_black"
         android:text="INI JUDUL MOVIE"/>
 
     <TextView
@@ -31,5 +32,34 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:maxLines="4"
+        android:fontFamily="@font/roboto_regular"
         android:text="Lorem ipsum"/>
+
+    <TextView
+        android:id="@+id/teksRelease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDeskripsi"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/imgMovie"
+        android:textColor="@color/green"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Release" />
+
+    <TextView
+        android:id="@+id/tvRelease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDeskripsi"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/orange"
+        android:layout_toEndOf="@+id/teksRelease"
+        android:layout_toRightOf="@+id/imgMovie"
+        android:fontFamily="@font/roboto_regular"
+        android:text="DD:MM:YY" />
+
 </RelativeLayout>

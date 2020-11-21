@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.ehhastudio.moviedb.R;
 import com.ehhastudio.moviedb.adapter.RecyclerMoviesAdapter;
@@ -54,6 +58,25 @@ public class MainActivity extends AppCompatActivity {
                 t.fillInStackTrace();
             }
         });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.translate_icon:
+               Intent intent = new Intent(Intent.ACTION_MAIN);
+               intent.setClassName("com.android.settings", "com.android.settings.LanguageSettings");
+               startActivity(intent);
+               return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

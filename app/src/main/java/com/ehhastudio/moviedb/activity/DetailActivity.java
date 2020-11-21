@@ -12,7 +12,7 @@ import com.ehhastudio.moviedb.model.Result;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_MOVIE = "string_extra";
-    String title,overview,image;
+    String title,overview,image,release;
     ImageView imgDetail;
     TextView tvTitle, tvDetail;
     Result result;
@@ -31,6 +31,7 @@ public class DetailActivity extends AppCompatActivity {
         title = result.getOriginalTitle();
         overview = result.getOverview();
         image = result.getPosterPath();
+        release = result.getReleaseDate();
 
         tvTitle.setText(title);
         tvDetail.setText(overview);
