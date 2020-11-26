@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -70,13 +69,50 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.translate_icon:
-               Intent intent = new Intent(Intent.ACTION_MAIN);
-               intent.setClassName("com.android.settings", "com.android.settings.LanguageSettings");
-               startActivity(intent);
+            case R.id.bahasa:
+               bahasaLang();
                return true;
+            case R.id.english:
+                englishLang();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    private void bahasaLang(){
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<Response> call = apiInterface.getMovie(CATEGORY,API_KEY,"id",PAGE);
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                List<Result> mList = response.body().getResults();
+                adapter = new RecyclerMoviesAdapter(MainActivity.this, mList);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+                t.fillInStackTrace();
+            }
+        });
+    }
+
+    private void englishLang(){
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<Response> call = apiInterface.getMovie(CATEGORY,API_KEY,"en-US",PAGE);
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                List<Result> mList = response.body().getResults();
+                adapter = new RecyclerMoviesAdapter(MainActivity.this, mList);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+                t.fillInStackTrace();
+            }
+        });
     }
 }
